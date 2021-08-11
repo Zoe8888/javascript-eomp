@@ -14,56 +14,63 @@
         <div id="form-box">
           <div class="login-container active">
             <h1>Sign In</h1>
-            <form action="">
-              <div class="username">
-                <input type="text" placeholder="Username" />
+            <form
+              onsubmit="signIn(document.querySelector('.username').value, document.querySelector('.password').value); return false"
+            >
+              <div>
+                <input class="username" type="text" placeholder="Username" />
               </div>
-              <div class="password">
-                <input type="text" placeholder="Password" />
+              <div>
+                <input class="password" type="text" placeholder="Password" />
               </div>
               <button class="login-button">Log In</button>
             </form>
           </div>
           <div class="register-container">
-            <h1>Register new user</h1>
-            <form action="">
-              <div class="name">
-                <input type="text" placeholder="Name" />
+            <h1>Create account</h1>
+            <form
+              onsubmit="signUp(
+              document.querySelector('.name').value,
+              document.querySelector('.surname').value,
+              document.querySelector('.email').value,
+              document.querySelector('.userkey').value,
+              document.querySelector('.passkey').value); return false"
+            >
+              <div>
+                <input class="name" type="text" placeholder="Name" />
               </div>
-              <div class="surname">
-                <input type="text" placeholder="Surname" />
+              <div>
+                <input class="surname" type="text" placeholder="Surname" />
               </div>
-              <div class="email">
-                <input type="text" placeholder="Email" />
+              <div>
+                <input class="email" type="text" placeholder="Email" />
               </div>
-              <div class="username">
-                <input type="text" placeholder="Username" />
+              <div>
+                <input class="userkey" type="text" placeholder="Username" />
               </div>
-              <div class="password">
-                <input type="text" placeholder="Password" />
+              <div>
+                <input class="passkey" type="text" placeholder="Password" />
               </div>
               <button class="register-button">Register</button>
             </form>
           </div>
         </div>
         <div id="right-container">
-          <h1>Trendy Troopers</h1>
-          <h2>Welcome back!</h2>
+          <h1>Welcome back to <br /><span>Trendy Troopers</span></h1>
+          <p>It's great to see you again!</p>
           <img src="/images/eye-removebg-preview.png" alt="eye" />
-          <p>
-            Don't have an account?
-            <button id="signUp">Create account</button>
-          </p>
+          <p>Don't have an account?</p>
+          <button id="signUp" onclick="switch_side()">Create account</button>
         </div>
         <div id="left-container">
-          <h1>Trendy Troopers</h1>
-          <p>Welcome! We're so glad to see you.</p>
+          <h1>Welcome to Trendy Troopers</h1>
+          <p>We're so glad to see you!</p>
           <img src="/images/eye-removebg-preview.png" alt="eye" />
           <p>Already have an account?</p>
-          <button id="signIn">Sign In</button>
+          <button id="signIn" onclick="switch_side()">Sign In</button>
         </div>
       </div>
     </section>
-    <script src="/styles.css"></script>
+    <script src="/scripts.js"></script>
   </body>
 </html>

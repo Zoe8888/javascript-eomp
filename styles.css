@@ -7,9 +7,10 @@
 }
 
 body {
-  background-color: rgb(146, 143, 140);
+  background-color: rgb(240, 202, 163);
   font-family: "Roboto Mono", sans-serif;
   overflow-x: hidden;
+  font-weight: 700;
 }
 
 #home-page {
@@ -33,10 +34,11 @@ body {
   position: absolute;
   top: -4%;
   left: 5%;
-  background-color: rgb(247, 136, 93);
+  color: rgb(240, 202, 163);
+  background-color: rgb(241, 136, 117);
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  transition: all 5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   z-index: 2;
 }
 
@@ -55,6 +57,8 @@ body {
   width: 50%;
   transition: 1s all ease;
   padding: 2%;
+  gap: 20px;
+  color: rgb(241, 136, 117);
 }
 
 #left-container {
@@ -64,20 +68,27 @@ body {
   right: 0%;
 }
 
-.login-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(114, 202, 133);
-  width: 30vw;
-  height: 60vh;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  gap: 20px;
+img {
+  margin: 10% 0;
 }
 
 .login-container h1 {
   margin: 10% 0;
+}
+
+.register-container h1 {
+  margin: 2% 0;
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: rgb(173, 238, 186); */
+  width: 30vw;
+  height: 64vh;
+  border-radius: 5px;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
 }
 
 .register-container {
@@ -85,10 +96,10 @@ body {
   flex-direction: column;
   align-items: center;
   width: 30vw;
-  height: 60vh;
+  height: 64vh;
   border-radius: 5px;
   box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  gap: 20px;
+  gap: 50px;
   padding: 5% 0;
 }
 
@@ -97,24 +108,56 @@ body {
   display: none;
 }
 
-.register-container input,
 .login-container input {
   width: 20vw;
-  height: 5vh;
+  height: 10vh;
   border: none;
-  border-bottom: 2px solid rgb(90, 90, 90);
+  border-bottom: 2px solid rgb(240, 202, 163);
   background: none;
-}
-
-.register-button {
-  width: 20vh;
-  height: 3vh;
   outline: none;
 }
 
+.register-container input {
+  width: 20vw;
+  height: 7vh;
+  border: none;
+  border-bottom: 2px solid rgb(240, 202, 163);
+  background: none;
+  outline: none;
+}
+
+.login-container input::placeholder,
+.register-container input::placeholder {
+  color: rgb(240, 202, 163);
+}
+
+.register-button,
 .login-button {
   margin: 10% 0;
   width: 20vh;
-  height: 3vh;
+  height: 5vh;
   outline: none;
+  border-radius: 5px;
+  border-color: rgb(211, 120, 104);
+  color: rgb(211, 120, 104);
+  background-color: rgb(240, 202, 163);
+}
+
+.register-button:hover,
+.login-button:hover,
+#signIn:hover,
+#signUp:hover {
+  background-color: wheat;
+  transition: 0.3s ease-in-out;
+}
+
+#signIn,
+#signUp {
+  width: 20vh;
+  height: 5vh;
+  outline: none;
+  border-radius: 5px;
+  border-color: rgb(211, 120, 104);
+  color: rgb(211, 120, 104);
+  background-color: rgb(240, 202, 163);
 }
