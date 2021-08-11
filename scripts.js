@@ -26,7 +26,7 @@ function signIn(username, password) {
         storage.setItem("jwt-token", data["access_token"]);
         storage.setItem("username", username);
         storage.setItem("password", password);
-        window.location.href = "/home.html";
+        window.location.href = "/home-page.html";
       }
     });
 }
@@ -65,6 +65,51 @@ function switch_side(e) {
   } else {
     container.style.transform = "translateX(0%)";
   }
+}
+
+function showProducts(
+  product_name,
+  product_image,
+  category,
+  description,
+  dimensions,
+  price,
+  id
+) {
+  console.log(product_name);
+  console.log(product_image);
+  console.log(category);
+  console.log(description);
+  console.log(dimensions);
+  console.log(id);
+  fetch("https://guarded-lake-78300.herokuapp.com/show-products", {
+    method: "GET",
+    body: JSON.stringify({
+      product_name: `${product_name}`,
+      product_image: `${product_image}`,
+      category: `${category}`,
+      description: `${description}`,
+      dimensions: `${dimensions}`,
+      id: `${id}`,
+    }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data["access_token"]) {
+        console.log(data);
+        storage = window.localStorage;
+        storage.setItem("jwt-token", data["access_token"]);
+        storage.setItem("product_name", product_name);
+        storage.setItem("product_image", product_image);
+        storage.setItem("category", category);
+        storage.setItem("description", description);
+        storage.setItem("dimensions", dimensions);
+        storage.setItem("id", id);
+      }
+    });
 }
 
 function addProduct(
@@ -108,7 +153,7 @@ function addProduct(
         storage.setItem("description", description);
         storage.setItem("dimensions", dimensions);
         storage.setItem("id", id);
-        window.location.href = "/add-product.html";
+        window.location.href = "/home-page.html";
       }
     });
 }

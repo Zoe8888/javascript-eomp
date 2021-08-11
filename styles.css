@@ -13,7 +13,7 @@ body {
   font-weight: 700;
 }
 
-#home-page {
+#login-page {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -111,6 +111,7 @@ img {
 .login-container input {
   width: 20vw;
   height: 10vh;
+  color: rgb(240, 202, 163);
   border: none;
   border-bottom: 2px solid rgb(240, 202, 163);
   background: none;
@@ -136,6 +137,7 @@ img {
   margin: 10% 0;
   width: 20vh;
   height: 5vh;
+  color: rgb(240, 202, 163);
   outline: none;
   border-radius: 5px;
   border-color: rgb(211, 120, 104);
