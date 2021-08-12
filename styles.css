@@ -59,6 +59,7 @@ body {
   padding: 2%;
   gap: 20px;
   color: rgb(241, 136, 117);
+  text-align: center;
 }
 
 #left-container {
@@ -69,7 +70,7 @@ body {
 }
 
 img {
-  margin: 10% 0;
+  height: 25vh;
 }
 
 .login-container h1 {
@@ -81,7 +82,7 @@ img {
 }
 
 .login-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   /* background-color: rgb(173, 238, 186); */
@@ -92,7 +93,7 @@ img {
 }
 
 .register-container {
-  display: flex;
+  display: none;
   flex-direction: column;
   align-items: center;
   width: 30vw;
@@ -162,4 +163,44 @@ img {
   border-color: rgb(211, 120, 104);
   color: rgb(211, 120, 104);
   background-color: rgb(240, 202, 163);
+}
+
+@media screen and (max-width: 916px) {
+  .container {
+    width: 88vw;
+    height: 50vw;
+  }
+
+  #form-box {
+    position: absolute;
+    top: -10%;
+  }
+
+  img {
+    height: 20vh;
+  }
+
+  .register-container,
+  .login-container {
+    width: 40vw;
+    height: 60vh;
+  }
+
+  .register-container {
+    display: none;
+    gap: 20px;
+  }
+
+  /* .register-container h1 {
+    ma
+  } */
+
+  .register-button,
+  .login-button {
+    margin: 20% 0;
+  }
+
+  #left-container {
+    text-align: center;
+  }
 }
