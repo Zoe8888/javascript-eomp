@@ -1,13 +1,20 @@
 function viewProfile() {
   console.log(window.localStorage["jwt-token"]);
-  console.log(window.localStorage["user-id"]);
+  console.log(window.localStorage["username"]);
   fetch(
-    `https://guarded-lake-78300.herokuapp.com/view-profile/${window.localStorage["user-id"]}`,
+    `https://guarded-lake-78300.herokuapp.com/view-profile/${window.localStorage.getItem(
+      "username"
+    )}/`,
     {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: window.localStorage["jwt-token"],
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS, DELETE, PUT",
+        "Access-Control-Allow-Headers":
+          "append,delete,entries,foreach,get,has,keys,set,values,Authorization",
+        Connection: "Keep-Alive",
+        Authorization: `jwt ${window.localStorage["jwt-token"]}`,
       },
     }
   )
@@ -37,6 +44,32 @@ function viewProfile() {
 
 viewProfile();
 
+function editProfile() {
+  fetch(
+    `https://guarded-lake-78300.herokuapp.com/view-profile/${window.localStorage["user-id"]}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `jwt ${window.localStorage["jwt-token"]}`,
+      },
+    }
+  );
+}
+
 function deleteProfile() {
-  fetch(`https://guarded-lake-78300.herokuapp.com/delete-profile`);
+  fetch(
+    `https://guarded-lake-78300.herokuapp.com/delete-profile/${window.localStorage["user-id"]}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `jwt ${window.localStorage["jwt-token"]}`,
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+    });
 }

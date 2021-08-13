@@ -9,7 +9,7 @@
       src="https://kit.fontawesome.com/7c1e973e41.js"
       crossorigin="anonymous"
     ></script>
-    <title>Document</title>
+    <title>Crystal</title>
   </head>
   <body>
     <section id="home-page">
@@ -43,7 +43,9 @@
     <section id="product-section">
       <div class="create-product">
         <h2>Add new product</h2>
-        <form>
+        <form
+          onsubmit="addProduct(document.querySelector('.product_name').value, document.querySelector('.hide').src, document.querySelectorAll('.category')[1].value, document.querySelectorAll('.description')[1].value, document.querySelectorAll('.dimensions')[1].value, document.querySelectorAll('.price')[1].value, document.querySelector('.id').value); return false"
+        >
           <input type="text" class="product_name" placeholder="Product Name" />
           <input type="text" class="category" placeholder="Category" />
           <input type="text" class="description" placeholder="Description" />
@@ -54,13 +56,10 @@
             type="file"
             class="product_image"
             placeholder="Product Image"
+            onchange="viewFile()"
           />
-          <button
-            class="newProduct_button"
-            onsubmit="addProduct(document.querySelector('.product_name').value, document.querySelector('.product-image')[1].value,document.querySelector('.category')[1].value, document.querySelector('.description').value, document.querySelectorAll('.dimensions')[1].value, document.querySelectorAll('.price')[1].value, document.querySelector('.id').value); return false"
-          >
-            Add Product
-          </button>
+          <img class="hide" height="300" src="" alt="" />
+          <button class="newProduct_button">Add Product</button>
         </form>
       </div>
     </section>

@@ -70,15 +70,19 @@ function switch_side(e) {
 function userInfo(username) {
   fetch(`https://guarded-lake-78300.herokuapp.com/view-profile/'${username}'`, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: window.localStorage["jwt-token"],
+    },
   })
-    .then((res) => res.json)
+    .then((res) => res.json())
     .then((data) => {
       console.log(data);
       window.localStorage.setItem("user-id", data.user[0]);
     });
 }
-
 userInfo(window.localStorage.getItem("username"));
+console.log(window.localStorage["username"]);
 
 function showProducts() {
   console.log(window.localStorage["jwt-token"]);
@@ -116,6 +120,23 @@ function showProducts() {
 
 showProducts();
 
+function viewFile() {
+  const preview = document.querySelector(".hide");
+  const file = document.querySelector(".product_image").files[0];
+  const reader = new FileReader();
+
+  reader.addEventListener(
+    "load",
+    function () {
+      preview.src = reader.result;
+    },
+    false
+  );
+  if (file) {
+    reader.readAsDataURL(file);
+  }
+}
+
 function addProduct(
   product_name,
   product_image,
@@ -125,6 +146,16 @@ function addProduct(
   price,
   id
 ) {
+  console.log(
+    product_name,
+    product_image,
+    category,
+    description,
+    dimensions,
+    price,
+    id
+  );
+  console.log(window.localStorage["jwt-token"]);
   fetch("https://guarded-lake-78300.herokuapp.com/add-product/", {
     method: "POST",
     body: JSON.stringify({
@@ -138,46 +169,56 @@ function addProduct(
     }),
     headers: {
       "Content-Type": "application/json",
-      Authorization: window.localStorage["jwt-token"],
+      "Access-Control-Allow-Origin": "*",
+      Authorization: `jwt ${window.localStorage["jwt-token"]}`,
     },
   })
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-    });
-}
-
-function viewProfile() {
-  console.log(window.localStorage["jwt-token"]);
-  fetch("https://guarded-lake-78300.herokuapp.com/view-profile/<int:id>/", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: window.localStorage["jwt-token"],
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-      users = data.data;
-      console.log(users);
-      users.forEach((user) => {
-        console.log(user);
-        document.querySelector(
-          ".profile-container"
-        ).innerHTML += `<div class="profile">
-                            <h3 class="fullname">${user[1]} ${user[2]}</h3>
-                            <p class="user-id">${user[0]}</p>
-                            <p class="user-email">${user[3]}</p>
-                            <p class="profile-username">${user[4]}</p>
-                            <p class="profile-password">${user[5]}</p>
-                            <div class="profile-buttons">
-                              <button class="edit">Edit Profile</button>
-                              <button class="delete">Delete Profile</button>
-                            </div>
-                          </div>`;
-      });
     });
 }
 
 viewProfile();
+
+function viewCart() {
+  console.log(window.localStorage["jwt-token"]);
+  fetch(
+    `https://guarded-lake-78300.herokuapp.com/view-cart/${window.localStorage["username"]}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: window.localStorage["jwt-token"],
+      },
+    }
+  )
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      carts = data.data;
+      console.log(carts);
+      carts.forEach((cart) => {
+        console.log(cart);
+        document.querySelector(
+          ".cart-container"
+        ).innerHTML += `<div class="cart">
+                          <div class="product-image"><img src="${cart[1]}" alt="${cart[0]}" /></div>
+                          <h3 class="product-name">${cart[0]}</h3>
+                          <p class="product-id">Product Id: ${cart[0]}</p>
+                          <p class="quantity">${cart[2]}</p>
+                          <div class="quantity-buttons">
+                          <button class="add">+</button>
+                          <button class="minus">-</button>
+                        </div>
+                          <p class="price">${cart[3]}</p>
+                          <div class="cart-buttons">
+                            <button class="checkout">Checkout</button>
+                            <button class="back">View Products</button>
+                          </div>
+                        </div>`;
+      });
+    });
+}
+
+viewCart();
