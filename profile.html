@@ -27,21 +27,20 @@
     <section id="profile">
       <div class="profile-container">
         <button class="delte-profile">Delete Profile</button>
-        <button class="edit-profile">Edit Profile</button>
+        <button class="edit_profile">Edit Profile</button>
       </div>
-      <div class="edit-container hide">
-        <form action="">
+      <div>
+        <form class="edit-container hide" action="">
           <input class="edit-name" type="text" placeholder="Name" />
           <input class="edit-surname" type="text" placeholder="Surname" />
           <input class="edit-email" type="text" placeholder="Email" />
-          <input class="edit-username" type="text" placeholder="Username" />
           <input class="edit-password" type="text" placeholder="Password" />
           <input
             class="edit-confirm"
             type="text"
             placeholder="Confirm Password"
           />
-          <button class="edit">Edit Profile</button>
+          <button class="save" onclick="saveEditedProfile()">Save</button>
         </form>
       </div>
     </section>
