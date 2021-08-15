@@ -79,10 +79,31 @@ function userInfo(username) {
     .then((data) => {
       console.log(data);
       window.localStorage.setItem("user-id", data.user[0]);
+      window.localStorage.setItem("username", data.user[1])
     });
 }
 userInfo(window.localStorage.getItem("username"));
 console.log(window.localStorage["username"]);
+userInfo(window.localStorage.getItem("user-id"));
+console.log(window.localStorage["user-id"]);
+
+function productInfo() {
+  fetch(`https://guarded-lake-78300.herokuapp.com/show-products/`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: window.localStorage["jwt-token"],
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      window.localStorage.setItem("product-id", data.user[0]);
+    });
+}
+productInfo(window.localStorage.getItem("product-id"));
+console.log(window.localStorage["product-id"]);
+
 
 function showProducts() {
   console.log(window.localStorage["jwt-token"]);
@@ -137,49 +158,7 @@ function viewFile() {
   }
 }
 
-function addProduct(
-  product_name,
-  product_image,
-  category,
-  description,
-  dimensions,
-  price,
-  id
-) {
-  console.log(
-    product_name,
-    product_image,
-    category,
-    description,
-    dimensions,
-    price,
-    id
-  );
-  console.log(window.localStorage["jwt-token"]);
-  fetch("https://guarded-lake-78300.herokuapp.com/add-product/", {
-    method: "POST",
-    body: JSON.stringify({
-      product_name: `${product_name}`,
-      product_image: `${product_image}`,
-      category: `${category}`,
-      description: `${description}`,
-      dimensions: `${dimensions}`,
-      price: `${price}`,
-      id: `${id}`,
-    }),
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-      Authorization: `jwt ${window.localStorage["jwt-token"]}`,
-    },
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.log(data);
-    });
-}
-
-viewProfile();
+// showProducts();
 
 function viewCart() {
   console.log(window.localStorage["jwt-token"]);
